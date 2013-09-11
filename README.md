@@ -6,7 +6,7 @@ Overview
 --------
 colorswatch.vim generates a readable color swatch of the current syntax highlighting.
 
-TODO: Screenshot
+![Screenshot](http://cocopon.me/app/colorswatch.vim/img/screenshot.png)
 
 
 How to Use
