@@ -16,7 +16,7 @@ function! colorswatch#decorator#new()
 	endfunction
 
 	function! decorator.register(color) dict
-		if len(a:color) == 0
+		if strlen(a:color) == 0
 			return 0
 		endif
 

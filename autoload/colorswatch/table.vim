@@ -27,7 +27,7 @@ function! colorswatch#table#new(rows)
 
 		for row in range(table.total_rows_)
 			let cell = table.rows_[row][col]
-			let width = len(cell)
+			let width = strdisplaywidth(cell)
 			if max_width < width
 				let max_width = width
 			endif
@@ -59,7 +59,7 @@ endfunction
 
 
 function! s:pad(cell, width)
-	let pad_width = a:width - len(a:cell)
+	let pad_width = a:width - strdisplaywidth(a:cell)
 	if pad_width <= 0
 		return a:cell
 	endif
