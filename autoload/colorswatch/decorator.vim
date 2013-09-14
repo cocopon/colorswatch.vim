@@ -50,7 +50,7 @@ endfunction
 
 
 function! s:group_name(color_id)
-	return printf('ColorSwatch%03d', a:color_id)
+	return printf('colorSwatch%03d', a:color_id)
 endfunction
 
 
