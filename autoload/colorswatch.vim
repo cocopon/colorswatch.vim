@@ -31,7 +31,7 @@ endfunction
 
 
 function! s:generate_rows(entryset)
-	let original_entries = a:entryset.get_all_original_names()
+	let original_entries = a:entryset.get_original_entries()
 
 	let rows = []
 	let i = 0
