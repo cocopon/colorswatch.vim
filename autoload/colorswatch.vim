@@ -11,8 +11,7 @@ function! colorswatch#generate()
 	call loader.load()
 
 	let entryset = loader.get_entryset()
-	let rows = s:generate_rows(entryset)
-	call colorswatch#sorter#sort_by_name(rows)
+	let rows = colorswatch#generator#standard(entryset)
 
 	let needs_new_buffer =
 				\ &modified
@@ -30,27 +29,6 @@ function! colorswatch#generate()
 endfunction
 
 
-function! s:generate_rows(entryset)
-	let original_entries = a:entryset.get_original_entries()
-
-	let rows = []
-	let i = 0
-	for name in keys(original_entries)
-		let row = {}
-		let row.name = name
-
-		let attrs = a:entryset.get_attrs(name)
-		let row.bg = get(attrs, 'guibg', '')
-		let row.fg = get(attrs, 'guifg', '')
-		call add(rows, row)
-
-		let i += 1
-	endfor
-
-	return rows
-endfunction
-
-
 function! s:print(rows)
 	let decorator = colorswatch#decorator#new()
 	call decorator.init()
@@ -58,17 +36,19 @@ function! s:print(rows)
 	let table_rows = []
 	for row in a:rows
 		let table_row = []
-		call add(table_row, row.name)
 
-		call decorator.register(row.bg)
-		let marker = decorator.get_marker(row.bg)
-		call add(table_row, marker)
-		call add(table_row, row.bg)
-
-		call decorator.register(row.fg)
-		let marker = decorator.get_marker(row.fg)
-		call add(table_row, marker)
-		call add(table_row, row.fg)
+		for cell in row
+			if exists('cell.text')
+				call add(table_row, cell.text)
+			elseif exists('cell.color')
+				call decorator.register(cell.color)
+				let marker = decorator.get_marker(cell.color)
+				call add(table_row, marker)
+				call add(table_row, cell.color)
+			else
+				throw 'Invalid cell: ' . string(cell)
+			endif
+		endfor
 
 		call add(table_rows, table_row)
 	endfor
