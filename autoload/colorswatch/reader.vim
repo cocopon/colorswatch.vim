@@ -6,10 +6,10 @@ let s:save_cpo = &cpo
 set cpo&vim
 
 
-function! colorswatch#loader#new()
-	let loader = {}
+function! colorswatch#reader#new()
+	let reader = {}
 
-	function! loader.save_opts_() dict
+	function! reader.save_opts_() dict
 		let self.opts_ = {}
 		let self.opts_.more = &more
 		let self.opts_.report = &report
@@ -17,14 +17,14 @@ function! colorswatch#loader#new()
 		let self.opts_.reg_a = @a
 	endfunction
 
-	function! loader.restore_opts_() dict
+	function! reader.restore_opts_() dict
 		let &more = self.opts_.more
 		let &report = self.opts_.report
 		let &shortmess = self.opts_.shortmess
 		let @a = self.opts_.reg_a
 	endfunction
 
-	function! loader.load() dict
+	function! reader.read() dict
 		call self.save_opts_()
 
 		set nomore report=99999 shortmess=aoOstTW
@@ -38,11 +38,11 @@ function! colorswatch#loader#new()
 		let self.entryset_ = s:parse_entryset_(data)
 	endfunction
 
-	function! loader.get_entryset() dict
+	function! reader.get_entryset() dict
 		return self.entryset_
 	endfunction
 
-	return loader
+	return reader
 endfunction
 
 

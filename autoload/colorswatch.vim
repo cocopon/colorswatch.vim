@@ -7,16 +7,16 @@ set cpo&vim
 
 
 function! colorswatch#generate()
-	let entryset = s:load_entryset()
+	let entryset = s:read_entryset()
 	let rows = colorswatch#generator#standard(entryset)
 	call s:print(rows)
 endfunction
 
 
-function! s:load_entryset()
-	let loader = colorswatch#loader#new()
-	call loader.load()
-	return loader.get_entryset()
+function! s:read_entryset()
+	let reader = colorswatch#reader#new()
+	call reader.read()
+	return reader.get_entryset()
 endfunction
 
 
