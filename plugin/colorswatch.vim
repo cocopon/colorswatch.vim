@@ -9,4 +9,7 @@ set cpo&vim
 command! -nargs=0 ColorSwatchGenerate call colorswatch#generate()
 
 
+let g:loaded_colorswatch = 1
+
+
 let &cpo = s:save_cpo
