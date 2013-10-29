@@ -7,12 +7,20 @@ set cpo&vim
 
 
 function! colorswatch#generate()
+	let entryset = s:load_entryset()
+	let rows = colorswatch#generator#standard(entryset)
+	call s:print(rows)
+endfunction
+
+
+function! s:load_entryset()
 	let loader = colorswatch#loader#new()
 	call loader.load()
+	return loader.get_entryset()
+endfunction
 
-	let entryset = loader.get_entryset()
-	let rows = colorswatch#generator#standard(entryset)
 
+function! s:prepare_buffer()
 	let needs_new_buffer =
 				\ &modified
 				\ || line('$') != 1
@@ -20,9 +28,10 @@ function! colorswatch#generate()
 	if needs_new_buffer
 		new
 	endif
+endfunction
 
-	call s:print(rows)
 
+function! s:finish_buffer()
 	set nomodified
 	setlocal nocursorline
 	normal! gg
@@ -30,6 +39,8 @@ endfunction
 
 
 function! s:print(rows)
+	call s:prepare_buffer()
+
 	let decorator = colorswatch#decorator#new()
 	call decorator.init()
 
@@ -55,6 +66,8 @@ function! s:print(rows)
 	let table = colorswatch#table#new(table_rows)
 
 	call append(0, table.build())
+
+	call s:finish_buffer()
 endfunction
 
 

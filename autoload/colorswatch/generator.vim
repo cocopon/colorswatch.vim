@@ -26,5 +26,36 @@ function! colorswatch#generator#standard(entryset)
 endfunction
 
 
+" Generate set of colors, sorted by hue
+function! colorswatch#generator#color(entryset)
+	let original_entries = a:entryset.get_original_entries()
+
+	let names = keys(original_entries)
+	let colors = {}
+	for name in names
+		let attrs = a:entryset.get_attrs(name)
+
+		let value = get(attrs, 'guibg', '')
+		if len(value) > 0
+			let colors[value] = 1
+		endif
+
+		let value = get(attrs, 'guifg', '')
+		if len(value) > 0
+			let colors[value] = 1
+		endif
+	endfor
+
+	" TODO: Sort colors by hue
+
+	let rows = []
+	for color in keys(colors)
+		let cell = colorswatch#cell#color(color)
+		call add(rows, [cell])
+	endfor
+
+	return rows
+endfunction
+
 
 let &cpo = s:save_cpo
