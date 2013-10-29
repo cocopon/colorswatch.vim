@@ -29,7 +29,7 @@ function! colorswatch#reader#new()
 
 		set nomore report=99999 shortmess=aoOstTW
 		redir @a
-		highlight
+		silent highlight
 		redir END
 
 		let data = @a
