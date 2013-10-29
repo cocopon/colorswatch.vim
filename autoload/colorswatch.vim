@@ -9,7 +9,10 @@ set cpo&vim
 function! colorswatch#generate()
 	let entryset = s:read_entryset()
 	let rows = colorswatch#generator#standard(entryset)
-	call s:print(rows)
+
+	call s:prepare_buffer()
+	call colorswatch#writer#screen#write(rows)
+	call s:finish_buffer()
 endfunction
 
 
@@ -35,39 +38,6 @@ function! s:finish_buffer()
 	set nomodified
 	setlocal nocursorline
 	normal! gg
-endfunction
-
-
-function! s:print(rows)
-	call s:prepare_buffer()
-
-	let decorator = colorswatch#decorator#new()
-	call decorator.init()
-
-	let table_rows = []
-	for row in a:rows
-		let table_row = []
-
-		for cell in row
-			if exists('cell.text')
-				call add(table_row, cell.text)
-			elseif exists('cell.color')
-				call decorator.register(cell.color)
-				let marker = decorator.get_marker(cell.color)
-				call add(table_row, marker)
-				call add(table_row, cell.color)
-			else
-				throw 'Invalid cell: ' . string(cell)
-			endif
-		endfor
-
-		call add(table_rows, table_row)
-	endfor
-	let table = colorswatch#table#new(table_rows)
-
-	call append(0, table.build())
-
-	call s:finish_buffer()
 endfunction
 
 
