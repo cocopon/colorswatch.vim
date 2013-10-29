@@ -8,10 +8,9 @@ set cpo&vim
 
 function! colorswatch#generate()
 	let entryset = s:read_entryset()
-	let rows = colorswatch#generator#standard(entryset)
 
 	call s:prepare_buffer()
-	call colorswatch#writer#screen#write(rows)
+	call colorswatch#writer#screen#write(entryset)
 	call s:finish_buffer()
 endfunction
 
