@@ -15,10 +15,10 @@ function! colorswatch#entryset#new(entry_dict)
 		return keys(self.entry_dict_)
 	endfunction
 
-	function! entryset.get_original_entries() dict
+	function! entryset.get_original_entry_names() dict
 		let result = copy(self.entry_dict_)
 		call filter(result, '!v:val.has_link()')
-		return result
+		return keys(result)
 	endfunction
 
 	function! entryset.get_attrs(name) dict

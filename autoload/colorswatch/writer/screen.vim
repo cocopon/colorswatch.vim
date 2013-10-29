@@ -4,13 +4,10 @@ set cpo&vim
 
 " Write [name, guibg, guifg], sorted by name
 function! colorswatch#writer#screen#write(entryset)
-	let original_entries = a:entryset.get_original_entries()
-
-	let names = keys(original_entries)
+	let names = a:entryset.get_original_entry_names()
 	call colorswatch#sorter#text(names)
 
 	let data = []
-
 	for name in names
 		let row = []
 
@@ -28,9 +25,7 @@ endfunction
 
 " Write set of colors, sorted by hue
 function! colorswatch#writer#screen#write_unique(entryset)
-	let original_entries = a:entryset.get_original_entries()
-
-	let names = keys(original_entries)
+	let names = a:entryset.get_original_entry_names()
 	let colors = {}
 	for name in names
 		let attrs = a:entryset.get_attrs(name)
