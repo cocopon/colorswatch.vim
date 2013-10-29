@@ -6,7 +6,7 @@ let s:save_cpo = &cpo
 set cpo&vim
 
 
-command! -nargs=0 ColorSwatchGenerate call colorswatch#generate()
+command! -nargs=? ColorSwatchGenerate call colorswatch#generate(<f-args>)
 
 
 let g:loaded_colorswatch = 1

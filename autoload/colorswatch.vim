@@ -6,11 +6,14 @@ let s:save_cpo = &cpo
 set cpo&vim
 
 
-function! colorswatch#generate()
+function! colorswatch#generate(...)
 	let entryset = s:read_entryset()
 
 	call s:prepare_buffer()
-	call colorswatch#writer#screen#write(entryset)
+
+	let writer = get(a:000, 0, 'screen')
+	execute printf('call colorswatch#writer#%s#write(entryset)', writer)
+
 	call s:finish_buffer()
 endfunction
 

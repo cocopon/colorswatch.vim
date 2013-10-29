@@ -28,7 +28,7 @@ function! colorswatch#entryset#new(entry_dict)
 		endif
 
 		if entry.has_link()
-			return entryset.get_attrs(entry.get_name())
+			return self.get_attrs(entry.get_link())
 		endif
 
 		return entry.get_attrs()
