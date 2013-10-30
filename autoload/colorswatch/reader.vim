@@ -69,8 +69,10 @@ function! s:parse_entryset_(data)
 		endif
 
 		let entry = s:parse_entry(line)
-		let name = entry.get_name()
-		let entry_dict[name] = entry
+		if s:is_allowed(entry)
+			let name = entry.get_name()
+			let entry_dict[name] = entry
+		endif
 
 		let i += 1
 		let line = ''
@@ -118,6 +120,15 @@ function! s:parse_attrs(attrs)
 	endfor
 
 	return result
+endfunction
+
+
+function! s:is_allowed(entry)
+	if !exists('g:colorswatch_exclusion_pattern')
+		return 1
+	endif
+
+	return match(a:entry.get_name(), g:colorswatch_exclusion_pattern) < 0
 endfunction
 
 
