@@ -15,7 +15,7 @@ function! colorswatch#writer#csv#write(entryset)
 		call add(row, get(attrs, 'guibg', ''))
 		call add(row, get(attrs, 'guifg', ''))
 
-		call add(rows, join(row, ','))
+		call add(rows, join(map(row, '"\"" . v:val . "\""'), ','))
 	endfor
 
 	call append(0, rows)
