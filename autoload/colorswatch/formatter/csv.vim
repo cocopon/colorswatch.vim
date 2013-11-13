@@ -2,7 +2,7 @@ let s:save_cpo = &cpo
 set cpo&vim
 
 
-function! colorswatch#writer#csv#write(entryset)
+function! colorswatch#formatter#csv#format(entryset)
 	let rows = []
 
 	let names = a:entryset.get_all_names()
@@ -18,13 +18,7 @@ function! colorswatch#writer#csv#write(entryset)
 		call add(rows, join(map(row, '"\"" . v:val . "\""'), ','))
 	endfor
 
-	call append(0, rows)
-endfunction
-
-
-function! s:color(color)
-	" TODO: Convert named color (see `:help gui-colors`)
-	return a:color
+	return rows
 endfunction
 
 

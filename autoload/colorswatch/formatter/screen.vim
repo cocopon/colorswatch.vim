@@ -2,8 +2,8 @@ let s:save_cpo = &cpo
 set cpo&vim
 
 
-" Write [name, guibg, guifg], sorted by name
-function! colorswatch#writer#screen#write(entryset)
+" Format [name, guibg, guifg], sorted by name
+function! colorswatch#formatter#screen#format(entryset)
 	let names = a:entryset.get_original_entry_names()
 	call colorswatch#sorter#text(names)
 
@@ -19,12 +19,12 @@ function! colorswatch#writer#screen#write(entryset)
 		call add(data, row)
 	endfor
 
-	call s:write(data)
+	return s:format(data)
 endfunction
 
 
-" Write set of colors, sorted by hue
-function! colorswatch#writer#screen#write_unique(entryset)
+" Format set of colors, sorted by hue
+function! colorswatch#formatter#screen#format_unique(entryset)
 	let names = a:entryset.get_original_entry_names()
 	let colors = {}
 	for name in names
@@ -49,11 +49,11 @@ function! colorswatch#writer#screen#write_unique(entryset)
 		call add(data, [cell])
 	endfor
 
-	call s:write(data)
+	return s:format(data)
 endfunction
 
 
-function! s:write(data)
+function! s:format(data)
 	let decorator = colorswatch#decorator#new()
 	call decorator.init()
 
@@ -78,7 +78,7 @@ function! s:write(data)
 	endfor
 	let table = colorswatch#table#new(table_rows)
 
-	call append(0, table.build())
+	return table.build()
 endfunction
 
 

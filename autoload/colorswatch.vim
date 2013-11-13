@@ -7,14 +7,19 @@ set cpo&vim
 
 
 function! colorswatch#generate(...)
-	let entryset = s:read_entryset()
-
 	call s:prepare_buffer()
 
-	let writer = get(a:000, 0, 'screen')
-	execute printf('call colorswatch#writer#%s#write(entryset)', writer)
+	let formatter = get(a:000, 0, 'screen')
+	call append(0, colorswatch#format(formatter))
 
 	call s:finish_buffer()
+endfunction
+
+
+function! colorswatch#format(formatter)
+	let func_name = printf('colorswatch#formatter#%s#format', a:formatter)
+	let entryset = s:read_entryset()
+	return function(func_name)(entryset)
 endfunction
 
 
