@@ -21,17 +21,24 @@ function! colorswatch#entryset#new(entry_dict)
 		return keys(result)
 	endfunction
 
-	function! entryset.get_attrs(name) dict
+	function! entryset.get_attrs(name, ...) dict
 		let entry = get(self.entry_dict_, a:name, {})
 		if empty(entry)
 			return entry
 		endif
 
-		if entry.has_link()
-			return self.get_attrs(entry.get_link())
+		if !entry.has_link()
+			return entry.get_attrs()
 		endif
 
-		return entry.get_attrs()
+		let history = (a:0 == 1) ? a:1 : []
+		if index(history, a:name) >= 0
+			echoerr 'Circular reference detected'
+			return {}
+		endif
+		call add(history, a:name)
+
+		return self.get_attrs(entry.get_link(), history)
 	endfunction
 
 	return entryset
