@@ -9,31 +9,10 @@ set cpo&vim
 function! colorswatch#reader#new()
 	let reader = {}
 
-	function! reader.save_opts_() dict
-		let self.opts_ = {}
-		let self.opts_.more = &more
-		let self.opts_.report = &report
-		let self.opts_.shortmess = &shortmess
-		let self.opts_.reg_a = @a
-	endfunction
-
-	function! reader.restore_opts_() dict
-		let &more = self.opts_.more
-		let &report = self.opts_.report
-		let &shortmess = self.opts_.shortmess
-		let @a = self.opts_.reg_a
-	endfunction
-
 	function! reader.read() dict
-		call self.save_opts_()
-
-		set nomore report=99999 shortmess=aoOstTW
-		redir @a
+		redir => data
 		silent highlight
 		redir END
-
-		let data = @a
-		call self.restore_opts_()
 
 		let self.entryset_ = s:parse_entryset_(data)
 	endfunction
