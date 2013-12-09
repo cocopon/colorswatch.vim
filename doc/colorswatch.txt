@@ -1,35 +1,27 @@
-*colorswatch.txt*  Generates a beautiful color swatch
+*colorswatch.txt*  Generate a beautiful color swatch
 
 
 ==============================================================================
 CONTENTS                                                *colorswatch-contents*
 
   1. Intro ....................... |colorswatch-intro|
-  2. Requirements ................ |colorswatch-requirements|
-  3. Commands .................... |colorswatch-commands|
-  4. Formatter ................... |colorswatch-formatter|
-  5. Options ..................... |colorswatch-options|
-  6. About ....................... |colorswatch-about|
+  2. Commands .................... |colorswatch-commands|
+  3. Formatter ................... |colorswatch-formatter|
+  4. Options ..................... |colorswatch-options|
+  5. About ....................... |colorswatch-about|
 
 
 ==============================================================================
 1. Intro                                                   *colorswatch-intro*
 
-*colorswatch.vim* is a plugin that generates a beautiful color swatch for the
-current color scheme and syntax.
-It makes you easy to pick colors, so it's useful for creating your own
+*colorswatch.vim* is a plugin that generates a beautiful color swatch of the
+current buffer.
+It makes you easy to pick color values, so it's useful for creating your own
 colorscheme, theme for powerline-like plugin, etc.
 
 
 ==============================================================================
-2. Requirements                                     *colorswatch-requirements*
-
-Currently it supports the GUI version only. Maybe it doesn't work fine in
-the terminal version.
-
-
-==============================================================================
-3. Commands                                             *colorswatch-commands*
+2. Commands                                             *colorswatch-commands*
 
 :ColorSwatchGenerate [formatter]                        *:ColorSwatchGenerate*
                         Generates a color swatch of the current buffer. You
@@ -38,7 +30,7 @@ the terminal version.
 
 
 ==============================================================================
-4. Formatter                                           *colorswatch-formatter*
+3. Formatter                                           *colorswatch-formatter*
 
 |colorswatch.vim| can generate highlight data in different formats.
 
@@ -49,12 +41,12 @@ screen                                          *colorswatch-formatter-screen*
 csv                                                *colorswatch-formatter-csv*
                         Generates a highlight data in comma separated format.
                         >
-                            "{group-name}","{guibg}","{guifg}"
+                            "{group-name}","{bg}","{fg}"
                             ...
 <
 
 ==============================================================================
-5. Options                                               *colorswatch-options*
+4. Options                                               *colorswatch-options*
 
                                              *g:colorswatch_exclusion_pattern*
 Exclusion pattern of the group name. Groups that matches with the pattern will
@@ -64,7 +56,7 @@ not be displayed in output.
 <
 
 ==============================================================================
-6. About                                                   *colorswatch-about*
+5. About                                                   *colorswatch-about*
 
 |colorswatch.vim| is developed by cocopon and licensed under the MIT License.
 Visit the project page for the latest version:

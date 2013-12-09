@@ -29,7 +29,12 @@ function! colorswatch#decorator#new()
 		let self.dict_[a:color] = color_id
 
 		let group_name = s:group_name(color_id)
-		execute printf('highlight %s guibg=%s guifg=%s', group_name, a:color, a:color)
+		execute printf('highlight %s %s=%s %s=%s',
+					\ group_name,
+					\ colorswatch#util#bg_attr_name(),
+					\ a:color,
+					\ colorswatch#util#fg_attr_name(),
+					\ a:color)
 		execute printf('syntax match %s /\[%03d\]/', group_name, color_id)
 
 		let self.color_id_ += 1

@@ -1,20 +1,26 @@
+" Author:  cocopon <cocopon@me.com>
+" License: MIT License
+
+
 let s:save_cpo = &cpo
 set cpo&vim
 
 
-" Format [name, guibg, guifg], sorted by name
+" Format [name, bg, fg], sorted by name
 function! colorswatch#formatter#screen#format(entryset)
 	let names = a:entryset.get_original_entry_names()
 	call colorswatch#sorter#text(names)
 
+	let bg_attr_name = colorswatch#util#bg_attr_name()
+	let fg_attr_name = colorswatch#util#fg_attr_name()
 	let data = []
 	for name in names
 		let row = []
 
 		let attrs = a:entryset.get_attrs(name)
 		call add(row, colorswatch#cell#text(name))
-		call add(row, colorswatch#cell#color(get(attrs, 'guibg', '')))
-		call add(row, colorswatch#cell#color(get(attrs, 'guifg', '')))
+		call add(row, colorswatch#cell#color(get(attrs, bg_attr_name, '')))
+		call add(row, colorswatch#cell#color(get(attrs, fg_attr_name, '')))
 
 		call add(data, row)
 	endfor
@@ -25,17 +31,20 @@ endfunction
 
 " Format set of colors, sorted by hue
 function! colorswatch#formatter#screen#format_unique(entryset)
+	let bg_attr_name = colorswatch#util#bg_attr_name()
+	let fg_attr_name = colorswatch#util#fg_attr_name()
 	let names = a:entryset.get_original_entry_names()
 	let colors = {}
+
 	for name in names
 		let attrs = a:entryset.get_attrs(name)
 
-		let value = get(attrs, 'guibg', '')
+		let value = get(attrs, bg_attr_name, '')
 		if len(value) > 0
 			let colors[value] = 1
 		endif
 
-		let value = get(attrs, 'guifg', '')
+		let value = get(attrs, fg_attr_name, '')
 		if len(value) > 0
 			let colors[value] = 1
 		endif
