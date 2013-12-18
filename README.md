@@ -4,7 +4,7 @@ colorswatch.vim
 
 Overview
 --------
-colorswatch.vim generates a readable color swatch of the current syntax highlighting.
+colorswatch.vim generates a beautiful color swatch of the current buffer.
 
 ![Screenshot](http://cocopon.me/app/colorswatch.vim/img/screenshot.png)
 
