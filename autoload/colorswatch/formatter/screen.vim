@@ -31,7 +31,6 @@ endfunction
 
 function! s:format(data)
 	let decorator = colorswatch#decorator#new()
-	call decorator.init()
 
 	let table_rows = []
 	for row in a:data
