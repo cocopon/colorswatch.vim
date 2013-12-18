@@ -21,16 +21,30 @@ endfunction
 
 
 function! colorswatch#source(source_name)
-	let func_name = printf('colorswatch#source#%s#collect',
-				\ a:source_name)
-	return function(func_name)()
+	try
+		let func_name = printf('colorswatch#source#%s#collect',
+					\ a:source_name)
+		let result = function(func_name)()
+		return result
+	catch /:E117:/
+		" E117: Unknown function
+		echoerr printf('Source not found: %s',
+					\ a:source_name)
+	endtry
 endfunction
 
 
 function! colorswatch#format(entryset, formatter_name)
-	let func_name = printf('colorswatch#formatter#%s#format',
-				\ a:formatter_name)
-	return function(func_name)(a:entryset)
+	try
+		let func_name = printf('colorswatch#formatter#%s#format',
+					\ a:formatter_name)
+		let result = function(func_name)(a:entryset)
+		return result
+	catch /:E117:/
+		" E117: Unknown function
+		echoerr printf('Formatter not found: %s',
+					\ a:formatter_name)
+	endtry
 endfunction
 
 
