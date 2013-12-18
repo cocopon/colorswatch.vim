@@ -39,29 +39,36 @@ function! colorswatch#entry#get_name() dict
 	return self.name_
 endfunction
 
+
 function! colorswatch#entry#get_link() dict
 	return self.link_
 endfunction
+
 
 function! colorswatch#entry#set_link(name) dict
 	let self.link_ = a:name
 endfunction
 
+
 function! colorswatch#entry#has_link() dict
 	return strlen(self.get_link()) > 0
 endfunction
+
 
 function! colorswatch#entry#is_cleared() dict
 	return self.cleared_
 endfunction
 
+
 function! colorswatch#entry#set_cleared(cleared) dict
 	let self.cleared_ = a:cleared
 endfunction
 
+
 function! colorswatch#entry#get_attrs() dict
 	return self.attrs_
 endfunction
+
 
 function! colorswatch#entry#set_attrs(attrs) dict
 	let self.attrs_ = a:attrs

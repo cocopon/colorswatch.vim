@@ -6,9 +6,10 @@ CONTENTS                                                *colorswatch-contents*
 
   1. Intro ....................... |colorswatch-intro|
   2. Commands .................... |colorswatch-commands|
-  3. Formatter ................... |colorswatch-formatter|
-  4. Options ..................... |colorswatch-options|
-  5. About ....................... |colorswatch-about|
+  3. Source ...................... |colorswatch-source|
+  4. Formatter ................... |colorswatch-formatter|
+  5. Options ..................... |colorswatch-options|
+  6. About ....................... |colorswatch-about|
 
 
 ==============================================================================
@@ -23,16 +24,30 @@ colorscheme, theme for powerline-like plugin, etc.
 ==============================================================================
 2. Commands                                             *colorswatch-commands*
 
-:ColorSwatchGenerate [formatter]                        *:ColorSwatchGenerate*
+:ColorSwatchGenerate [source] [formatter]               *:ColorSwatchGenerate*
                         Generates a color swatch of the current buffer. You
-                        can specify the formatter to change output format.
-                        See |colorswatch-formatter| for more information.
+                        can specify the source and the formatter to change
+                        output format. See |colorswatch-source| and
+                        |colorswatch-formatter| for more information.
 
 
 ==============================================================================
-3. Formatter                                           *colorswatch-formatter*
+3. Source                                                 *colorswatch-source*
 
-|colorswatch.vim| can generate highlight data in different formats.
+You can specify a source of the color swatch.
+
+all                                                   *colorswatch-source-all*
+                        Default source. Collects all highlight groups.
+
+original                                         *colorswatch-source-original*
+                        Collects original highlight groups. Groups that links
+                        to another group will be excluded.
+
+
+==============================================================================
+4. Formatter                                           *colorswatch-formatter*
+
+You can specify an output format of the color swatch.
 
 screen                                          *colorswatch-formatter-screen*
                         Default formatter. Generates a user-friendly color
@@ -46,17 +61,17 @@ csv                                                *colorswatch-formatter-csv*
 <
 
 ==============================================================================
-4. Options                                               *colorswatch-options*
+5. Options                                               *colorswatch-options*
 
                                              *g:colorswatch_exclusion_pattern*
 Exclusion pattern of the group name. Groups that matches with the pattern will
 not be displayed in output.
 >
-	let g:colorswatch_exclusion_pattern = 'LightLine.\+'
+        let g:colorswatch_exclusion_pattern = 'LightLine.\+'
 <
 
 ==============================================================================
-5. About                                                   *colorswatch-about*
+6. About                                                   *colorswatch-about*
 
 |colorswatch.vim| is developed by cocopon and licensed under the MIT License.
 Visit the project page for the latest version:

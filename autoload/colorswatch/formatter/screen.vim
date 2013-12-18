@@ -8,7 +8,7 @@ set cpo&vim
 
 " Format [name, bg, fg], sorted by name
 function! colorswatch#formatter#screen#format(entryset)
-	let names = a:entryset.get_original_entry_names()
+	let names = a:entryset.get_all_names()
 	call colorswatch#sorter#text(names)
 
 	let bg_attr_name = colorswatch#util#bg_attr_name()

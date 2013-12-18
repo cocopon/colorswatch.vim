@@ -6,7 +6,7 @@ let s:save_cpo = &cpo
 set cpo&vim
 
 
-let s:methosd = [
+let s:methods = [
 			\ 	'build',
 			\ ]
 let s:separator = '  '
