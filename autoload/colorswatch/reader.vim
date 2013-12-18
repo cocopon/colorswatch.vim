@@ -6,39 +6,16 @@ let s:save_cpo = &cpo
 set cpo&vim
 
 
-let s:methods = [
-			\ 	'get_entryset',
-			\ 	'read',
-			\ ]
-
-
-function! colorswatch#reader#new()
-	let reader = {}
-
-	call colorswatch#util#setup_methods(
-				\ reader,
-				\ 'colorswatch#reader',
-				\ s:methods)
-
-	return reader
-endfunction
-
-
-function! colorswatch#reader#read() dict
+function! colorswatch#reader#read()
 	redir => data
 	silent highlight
 	redir END
 
-	let self.entryset_ = s:parse_entryset_(data)
+	return s:parse_entries(data)
 endfunction
 
 
-function! colorswatch#reader#get_entryset() dict
-	return self.entryset_
-endfunction
-
-
-function! s:parse_entryset_(data)
+function! s:parse_entries(data)
 	let lines = split(a:data, '\n')
 
 	let entries = []
@@ -70,7 +47,7 @@ function! s:parse_entryset_(data)
 		let line = ''
 	endwhile
 
-	return colorswatch#entryset#new(entries)
+	return entries
 endfunction
 
 

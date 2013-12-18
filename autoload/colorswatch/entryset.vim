@@ -7,8 +7,8 @@ set cpo&vim
 
 
 let s:methods = [
+			\ 	'all_names',
 			\ 	'entries',
-			\ 	'get_all_names',
 			\ 	'get_attrs',
 			\ ]
 
@@ -38,8 +38,8 @@ function! colorswatch#entryset#entries() dict
 endfunction
 
 
-function! colorswatch#entryset#get_all_names() dict
-	return keys(self.dict_)
+function! colorswatch#entryset#all_names() dict
+	return map(self.entries_, 'v:val.get_name()')
 endfunction
 
 

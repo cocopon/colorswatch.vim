@@ -10,10 +10,10 @@ function! colorswatch#generate(...)
 	call s:prepare_buffer()
 
 	let source_name = get(a:000, 0, 'all')
-	let entryset = colorswatch#source(source_name)
+	let entries = colorswatch#source(source_name)
 
 	let formatter_name = get(a:000, 1, 'screen')
-	let lines = colorswatch#format(entryset, formatter_name)
+	let lines = colorswatch#format(entries, formatter_name)
 	call append(0, lines)
 
 	call s:finish_buffer()
@@ -34,11 +34,11 @@ function! colorswatch#source(source_name)
 endfunction
 
 
-function! colorswatch#format(entryset, formatter_name)
+function! colorswatch#format(entries, formatter_name)
 	try
 		let func_name = printf('colorswatch#formatter#%s#format',
 					\ a:formatter_name)
-		let result = function(func_name)(a:entryset)
+		let result = function(func_name)(a:entries)
 		return result
 	catch /:E117:/
 		" E117: Unknown function

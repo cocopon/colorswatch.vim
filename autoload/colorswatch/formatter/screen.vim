@@ -6,18 +6,17 @@ let s:save_cpo = &cpo
 set cpo&vim
 
 
-" Format [name, bg, fg], sorted by name
-function! colorswatch#formatter#screen#format(entryset)
-	let names = a:entryset.get_all_names()
-	call colorswatch#sorter#text(names)
-
+function! colorswatch#formatter#screen#format(entries)
 	let bg_attr_name = colorswatch#util#bg_attr_name()
 	let fg_attr_name = colorswatch#util#fg_attr_name()
+
+	let entryset = colorswatch#entryset#new(a:entries)
 	let data = []
-	for name in names
+
+	for name in entryset.all_names()
 		let row = []
 
-		let attrs = a:entryset.get_attrs(name)
+		let attrs = entryset.get_attrs(name)
 		call add(row, colorswatch#cell#text(name))
 		call add(row, colorswatch#cell#color(get(attrs, bg_attr_name, '')))
 		call add(row, colorswatch#cell#color(get(attrs, fg_attr_name, '')))

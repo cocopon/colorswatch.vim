@@ -18,7 +18,7 @@ function! colorswatch#source#cterm#collect()
 		let i += 1
 	endwhile
 
-	return colorswatch#entryset#new(entries)
+	return entries
 endfunction
 
 

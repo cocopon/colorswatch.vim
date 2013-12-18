@@ -6,13 +6,8 @@ let s:save_cpo = &cpo
 set cpo&vim
 
 
-function! colorswatch#sorter#text(texts)
-	call sort(a:texts, 's:compare_by_text')
-endfunction
-
-
-function! s:compare_by_text(text1, text2)
-	return char2nr(a:text1) - char2nr(a:text2)
+function! colorswatch#sorter#by_name(entry1, entry2)
+	return (a:entry1.get_name() >= a:entry2.get_name()) * 2 - 1
 endfunction
 
 
