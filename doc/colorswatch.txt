@@ -40,7 +40,7 @@ all                                                   *colorswatch-source-all*
                         Default source. Collects all highlight groups.
 
 original                                         *colorswatch-source-original*
-                        Collects original highlight groups. Groups that links
+                        Collects original highlight groups. Groups that link
                         to another group will be excluded.
 
 cterm                                               *colorswatch-source-cterm*
