@@ -68,7 +68,7 @@ csv                                                *colorswatch-formatter-csv*
 5. Options                                               *colorswatch-options*
 
                                              *g:colorswatch_exclusion_pattern*
-Exclusion pattern of the group name. Groups that matches with the pattern will
+Exclusion pattern of the group name. Groups that match with the pattern will
 not be displayed in output.
 >
         let g:colorswatch_exclusion_pattern = 'LightLine.\+'
