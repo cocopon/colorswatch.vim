@@ -6,6 +6,9 @@ let s:save_cpo = &cpo
 set cpo&vim
 
 
+let s:methosd = [
+			\ 	'build',
+			\ ]
 let s:separator = '  '
 
 
@@ -36,25 +39,31 @@ function! colorswatch#table#new(rows)
 		call add(table.col_widths_, max_width)
 	endfor
 
-	function! table.build() dict
-		let lines = []
-
-		for row in range(self.total_rows_)
-			let cells = []
-
-			for col in range(self.total_cols_)
-				let cell = self.rows_[row][col]
-				call add(cells, s:pad(cell, self.col_widths_[col]))
-			endfor
-
-			let line = s:rtrim(join(cells, s:separator))
-			call add(lines, line)
-		endfor
-
-		return lines
-	endfunction
+	call colorswatch#util#setup_methods(
+				\ table,
+				\ 'colorswatch#table',
+				\ s:methods)
 
 	return table
+endfunction
+
+
+function! colorswatch#table#build() dict
+	let lines = []
+
+	for row in range(self.total_rows_)
+		let cells = []
+
+		for col in range(self.total_cols_)
+			let cell = self.rows_[row][col]
+			call add(cells, s:pad(cell, self.col_widths_[col]))
+		endfor
+
+		let line = s:rtrim(join(cells, s:separator))
+		call add(lines, line)
+	endfor
+
+	return lines
 endfunction
 
 

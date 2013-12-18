@@ -16,4 +16,11 @@ function! colorswatch#util#fg_attr_name()
 endfunction
 
 
+function! colorswatch#util#setup_methods(instance, namespace, methods)
+	for method in a:methods
+		let a:instance[method] = function(join([a:namespace, method], '#'))
+	endfor
+endfunction
+
+
 let &cpo = s:save_cpo
