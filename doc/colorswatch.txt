@@ -43,6 +43,10 @@ original                                         *colorswatch-source-original*
                         Collects original highlight groups. Groups that links
                         to another group will be excluded.
 
+cterm                                               *colorswatch-source-cterm*
+                        Collects all cterm colors. This source can be used in
+                        a color terminal.
+
 
 ==============================================================================
 4. Formatter                                           *colorswatch-formatter*
