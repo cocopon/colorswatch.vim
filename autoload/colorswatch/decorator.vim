@@ -28,7 +28,7 @@ endfunction
 
 function! colorswatch#decorator#register(color) dict
 	if strlen(a:color) == 0
-		return 0
+		return -1
 	endif
 
 	let color_id = get(self.dict_, a:color, -1)
@@ -55,9 +55,9 @@ endfunction
 
 
 function! colorswatch#decorator#get_marker(color) dict
-	let color_id = get(self.dict_, a:color, 0)
+	let color_id = get(self.dict_, a:color, -1)
 
-	return color_id == 0
+	return color_id < 0
 				\ ? '     '
 				\ : printf('[%03d]', color_id)
 endfunction
