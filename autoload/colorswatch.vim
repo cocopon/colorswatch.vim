@@ -15,6 +15,7 @@ function! colorswatch#generate(...)
 	let formatter_name = get(a:000, 1, 'screen')
 	let lines = colorswatch#format(entries, formatter_name)
 	call append(0, lines)
+	normal! Gdd
 
 	call s:finish_buffer()
 endfunction
