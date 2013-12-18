@@ -41,6 +41,7 @@ endfunction
 function! s:parse_entryset_(data)
 	let lines = split(a:data, '\n')
 
+	let entries = []
 	let entry_dict = {}
 
 	let total_lines = len(lines)
@@ -62,15 +63,14 @@ function! s:parse_entryset_(data)
 
 		let entry = s:parse_entry(line)
 		if s:is_allowed(entry)
-			let name = entry.get_name()
-			let entry_dict[name] = entry
+			call add(entries, entry)
 		endif
 
 		let i += 1
 		let line = ''
 	endwhile
 
-	return colorswatch#entryset#new(entry_dict)
+	return colorswatch#entryset#new(entries)
 endfunction
 
 

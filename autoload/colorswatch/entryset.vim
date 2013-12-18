@@ -9,13 +9,19 @@ set cpo&vim
 let s:methods = [
 			\ 	'get_all_names',
 			\ 	'get_attrs',
-			\ 	'get_original_entry_names',
 			\ ]
 
 
-function! colorswatch#entryset#new(entry_dict)
+function! colorswatch#entryset#new(entries)
 	let entryset = {}
-	let entryset.entry_dict_ = a:entry_dict
+	let entryset.entries_ = a:entries
+
+	let dict = {}
+	for entry in a:entries
+		let name = entry.get_name()
+		let dict[name] = entry
+	endfor
+	let entryset.dict_ = dict
 
 	call colorswatch#util#setup_methods(
 				\ entryset,
@@ -27,19 +33,12 @@ endfunction
 
 
 function! colorswatch#entryset#get_all_names() dict
-	return keys(self.entry_dict_)
-endfunction
-
-
-function! colorswatch#entryset#get_original_entry_names() dict
-	let result = copy(self.entry_dict_)
-	call filter(result, '!v:val.has_link()')
-	return keys(result)
+	return keys(self.dict_)
 endfunction
 
 
 function! colorswatch#entryset#get_attrs(name, ...) dict
-	let entry = get(self.entry_dict_, a:name, {})
+	let entry = get(self.dict_, a:name, {})
 	if empty(entry)
 		return entry
 	endif
