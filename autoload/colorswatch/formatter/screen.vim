@@ -29,39 +29,6 @@ function! colorswatch#formatter#screen#format(entryset)
 endfunction
 
 
-" Format set of colors, sorted by hue
-function! colorswatch#formatter#screen#format_unique(entryset)
-	let bg_attr_name = colorswatch#util#bg_attr_name()
-	let fg_attr_name = colorswatch#util#fg_attr_name()
-	let names = a:entryset.get_original_entry_names()
-	let colors = {}
-
-	for name in names
-		let attrs = a:entryset.get_attrs(name)
-
-		let value = get(attrs, bg_attr_name, '')
-		if len(value) > 0
-			let colors[value] = 1
-		endif
-
-		let value = get(attrs, fg_attr_name, '')
-		if len(value) > 0
-			let colors[value] = 1
-		endif
-	endfor
-
-	" TODO: Sort colors by hue
-
-	let data = []
-	for color in keys(colors)
-		let cell = colorswatch#cell#color(color)
-		call add(data, [cell])
-	endfor
-
-	return s:format(data)
-endfunction
-
-
 function! s:format(data)
 	let decorator = colorswatch#decorator#new()
 	call decorator.init()
