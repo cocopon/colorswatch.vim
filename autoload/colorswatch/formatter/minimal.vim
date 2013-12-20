@@ -1,3 +1,7 @@
+" Author:  cocopon <cocopon@me.com>
+" License: MIT License
+
+
 let s:save_cpo = &cpo
 set cpo&vim
 
