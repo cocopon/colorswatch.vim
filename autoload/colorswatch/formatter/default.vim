@@ -6,7 +6,7 @@ let s:save_cpo = &cpo
 set cpo&vim
 
 
-function! colorswatch#formatter#screen#format(entries)
+function! colorswatch#formatter#default#format(entries)
 	let bg_attr_name = colorswatch#util#bg_attr_name()
 	let fg_attr_name = colorswatch#util#fg_attr_name()
 

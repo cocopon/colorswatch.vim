@@ -12,7 +12,7 @@ function! colorswatch#generate(...)
 	let source_name = get(a:000, 0, 'all')
 	let entries = colorswatch#source(source_name)
 
-	let formatter_name = get(a:000, 1, 'screen')
+	let formatter_name = get(a:000, 1, 'default')
 	let lines = colorswatch#format(entries, formatter_name)
 	call append(0, lines)
 	normal! Gdd

@@ -53,7 +53,7 @@ cterm                                               *colorswatch-source-cterm*
 
 You can specify an output format of the color swatch.
 
-screen                                          *colorswatch-formatter-screen*
+default                                        *colorswatch-formatter-default*
                         Default formatter. Generates a user-friendly color
                         swatch.
 
