@@ -10,24 +10,24 @@ function! colorswatch#formatter#minimal#format(entries)
 	let fg_attr_name = colorswatch#util#fg_attr_name()
 
 	let entryset = colorswatch#entryset#new(a:entries)
-	let colors = []
+	let colors = {}
 	for name in entryset.all_names()
 		let attrs = entryset.get_attrs(name)
 
 		let color = get(attrs, bg_attr_name, '')
 		if !empty(color)
-			call add(colors, color)
+			let colors[color] = 1
 		endif
 
 		let color = get(attrs, fg_attr_name, '')
 		if !empty(color)
-			call add(colors, color)
+			let colors[color] = 1
 		endif
 	endfor
 
 	" TODO: Sort by hue
 
-	return s:build_table(colors)
+	return s:build_table(keys(colors))
 endfunction
 
 
