@@ -57,9 +57,12 @@ default                                        *colorswatch-formatter-default*
                         Default formatter. Generates a user-friendly color
                         swatch.
 
+minimal                                        *colorswatch-formatter-minimal*
+                        Generates a minimal color swatch.
+
 csv                                                *colorswatch-formatter-csv*
                         Generates a highlight data in comma separated format.
-                        >
+>
                             "{group-name}","{bg}","{fg}"
                             ...
 <
