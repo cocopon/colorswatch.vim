@@ -13,7 +13,6 @@ set cpo&vim
 
 command! -nargs=* ColorSwatchGenerate call colorswatch#generate(<f-args>)
 
-
 let g:loaded_colorswatch = 1
 
 
