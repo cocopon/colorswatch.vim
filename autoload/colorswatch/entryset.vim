@@ -39,7 +39,7 @@ endfunction
 
 
 function! colorswatch#entryset#all_names() dict
-	return map(self.entries_, 'v:val.get_name()')
+	return map(copy(self.entries_), 'v:val.get_name()')
 endfunction
 
 
