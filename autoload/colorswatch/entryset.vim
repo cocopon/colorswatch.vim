@@ -9,6 +9,7 @@ set cpo&vim
 let s:methods = [
 			\ 	'all_names',
 			\ 	'entries',
+			\ 	'find_entry',
 			\ 	'get_attrs',
 			\ ]
 
@@ -30,6 +31,11 @@ function! colorswatch#entryset#new(entries)
 				\ s:methods)
 
 	return entryset
+endfunction
+
+
+function! colorswatch#entryset#find_entry(name) dict
+	return get(self.dict_, a:name)
 endfunction
 
 
