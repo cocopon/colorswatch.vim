@@ -61,11 +61,14 @@ minimal                                        *colorswatch-formatter-minimal*
                         Generates a minimal color swatch.
 
 csv                                                *colorswatch-formatter-csv*
-                        Generates a highlight data in comma separated format.
+                        Generates highlight data in comma separated format.
 >
                             "{group-name}","{bg}","{fg}"
                             ...
 <
+css                                                *colorswatch-formatter-css*
+                        Generates highlight data in CSS format.
+
 
 ==============================================================================
 5. Options                                               *colorswatch-options*
