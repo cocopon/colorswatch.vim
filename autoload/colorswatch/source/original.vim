@@ -7,7 +7,7 @@ set cpo&vim
 
 
 " A source that collects original (not a link) highlight groups.
-function! colorswatch#source#original#collect()
+function! colorswatch#source#original#collect() abort
 	let entries = colorswatch#reader#read()
 	let original_entries = copy(entries)
 	call filter(original_entries, '!v:val.has_link()')

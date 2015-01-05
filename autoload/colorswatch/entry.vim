@@ -19,7 +19,7 @@ let s:methods = [
 			\ ]
 
 
-function colorswatch#entry#new(name)
+function! colorswatch#entry#new(name) abort
 	let entry = {}
 	let entry.name_ = a:name
 	let entry.link_ = ''
@@ -35,42 +35,42 @@ function colorswatch#entry#new(name)
 endfunction
 
 
-function! colorswatch#entry#get_name() dict
+function! colorswatch#entry#get_name() abort dict
 	return self.name_
 endfunction
 
 
-function! colorswatch#entry#get_link() dict
+function! colorswatch#entry#get_link() abort dict
 	return self.link_
 endfunction
 
 
-function! colorswatch#entry#set_link(name) dict
+function! colorswatch#entry#set_link(name) abort dict
 	let self.link_ = a:name
 endfunction
 
 
-function! colorswatch#entry#has_link() dict
+function! colorswatch#entry#has_link() abort dict
 	return strlen(self.get_link()) > 0
 endfunction
 
 
-function! colorswatch#entry#is_cleared() dict
+function! colorswatch#entry#is_cleared() abort dict
 	return self.cleared_
 endfunction
 
 
-function! colorswatch#entry#set_cleared(cleared) dict
+function! colorswatch#entry#set_cleared(cleared) abort dict
 	let self.cleared_ = a:cleared
 endfunction
 
 
-function! colorswatch#entry#get_attrs() dict
+function! colorswatch#entry#get_attrs() abort dict
 	return self.attrs_
 endfunction
 
 
-function! colorswatch#entry#set_attrs(attrs) dict
+function! colorswatch#entry#set_attrs(attrs) abort dict
 	let self.attrs_ = a:attrs
 endfunction
 

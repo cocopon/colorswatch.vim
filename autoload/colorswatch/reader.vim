@@ -6,7 +6,7 @@ let s:save_cpo = &cpo
 set cpo&vim
 
 
-function! colorswatch#reader#read()
+function! colorswatch#reader#read() abort
 	redir => data
 	silent highlight
 	redir END
@@ -15,7 +15,7 @@ function! colorswatch#reader#read()
 endfunction
 
 
-function! s:parse_entries(data)
+function! s:parse_entries(data) abort
 	let lines = split(a:data, '\n')
 
 	let entries = []
@@ -51,7 +51,7 @@ function! s:parse_entries(data)
 endfunction
 
 
-function! s:parse_entry(line)
+function! s:parse_entry(line) abort
 	" Name xxx key=value key=value ...
 	" Name xxx links to AnotherName
 	" Name xxx cleared
@@ -62,10 +62,10 @@ function! s:parse_entry(line)
 	let entry = colorswatch#entry#new(name)
 
 	let comps2 = comps[2]
-	if comps2 == 'links'
+	if comps2 ==? 'links'
 		let target_name = comps[4]
 		call entry.set_link(target_name)
-	elseif comps2 == 'cleared'
+	elseif comps2 ==? 'cleared'
 		call entry.set_cleared(1)
 	else
 		let attrs = copy(comps)
@@ -77,7 +77,7 @@ function! s:parse_entry(line)
 endfunction
 
 
-function! s:parse_attrs(attrs)
+function! s:parse_attrs(attrs) abort
 	let result = {}
 
 	for attr in a:attrs
@@ -92,7 +92,7 @@ function! s:parse_attrs(attrs)
 endfunction
 
 
-function! s:is_allowed(entry)
+function! s:is_allowed(entry) abort
 	if !exists('g:colorswatch_exclusion_pattern')
 		return 1
 	endif

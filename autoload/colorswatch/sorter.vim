@@ -6,7 +6,7 @@ let s:save_cpo = &cpo
 set cpo&vim
 
 
-function! colorswatch#sorter#by_name(entry1, entry2)
+function! colorswatch#sorter#by_name(entry1, entry2) abort
 	return (a:entry1.get_name() >= a:entry2.get_name()) * 2 - 1
 endfunction
 

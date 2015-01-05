@@ -12,7 +12,7 @@ let s:methods = [
 let s:separator = '  '
 
 
-function! colorswatch#table#new(rows)
+function! colorswatch#table#new(rows) abort
 	let table = {}
 	let table.rows_ = a:rows
 
@@ -48,7 +48,7 @@ function! colorswatch#table#new(rows)
 endfunction
 
 
-function! colorswatch#table#build() dict
+function! colorswatch#table#build() abort dict
 	let lines = []
 
 	for row in range(self.total_rows_)
@@ -67,7 +67,7 @@ function! colorswatch#table#build() dict
 endfunction
 
 
-function! s:pad(cell, width)
+function! s:pad(cell, width) abort
 	let pad_width = a:width - strdisplaywidth(a:cell)
 	if pad_width <= 0
 		return a:cell
@@ -77,7 +77,7 @@ function! s:pad(cell, width)
 endfunction
 
 
-function! s:rtrim(str)
+function! s:rtrim(str) abort
 	let matches = matchlist(a:str, '^\(.\{-}\)\s*$')
 	return get(matches, 1, a:str)
 endfunction

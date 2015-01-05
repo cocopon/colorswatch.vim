@@ -6,7 +6,7 @@ let s:save_cpo = &cpo
 set cpo&vim
 
 
-function! colorswatch#formatter#default#format(entries)
+function! colorswatch#formatter#default#format(entries) abort
 	let bg_attr_name = colorswatch#util#bg_attr_name()
 	let fg_attr_name = colorswatch#util#fg_attr_name()
 
@@ -28,7 +28,7 @@ function! colorswatch#formatter#default#format(entries)
 endfunction
 
 
-function! s:format(data)
+function! s:format(data) abort
 	let decorator = colorswatch#decorator#new()
 
 	let table_rows = []

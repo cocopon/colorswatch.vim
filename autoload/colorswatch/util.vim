@@ -6,17 +6,17 @@ let s:save_cpo = &cpo
 set cpo&vim
 
 
-function! colorswatch#util#bg_attr_name()
+function! colorswatch#util#bg_attr_name() abort
 	return has('gui') ? 'guibg' : 'ctermbg'
 endfunction
 
 
-function! colorswatch#util#fg_attr_name()
+function! colorswatch#util#fg_attr_name() abort
 	return has('gui') ? 'guifg' : 'ctermfg'
 endfunction
 
 
-function! colorswatch#util#setup_methods(instance, namespace, methods)
+function! colorswatch#util#setup_methods(instance, namespace, methods) abort
 	for method in a:methods
 		let a:instance[method] = function(join([a:namespace, method], '#'))
 	endfor

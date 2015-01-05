@@ -9,7 +9,7 @@ set cpo&vim
 let s:width = 3
 
 
-function! colorswatch#formatter#minimal#format(entries)
+function! colorswatch#formatter#minimal#format(entries) abort
 	let bg_attr_name = colorswatch#util#bg_attr_name()
 	let fg_attr_name = colorswatch#util#fg_attr_name()
 
@@ -35,7 +35,7 @@ function! colorswatch#formatter#minimal#format(entries)
 endfunction
 
 
-function! s:build_table(colors)
+function! s:build_table(colors) abort
 	let decorator = colorswatch#decorator#new()
 
 	let rows = []

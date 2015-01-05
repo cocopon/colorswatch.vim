@@ -6,7 +6,7 @@ let s:save_cpo = &cpo
 set cpo&vim
 
 
-function! colorswatch#generate(...)
+function! colorswatch#generate(...) abort
 	call s:prepare_buffer()
 
 	let source_name = get(a:000, 0, 'all')
@@ -21,7 +21,7 @@ function! colorswatch#generate(...)
 endfunction
 
 
-function! colorswatch#source(source_name)
+function! colorswatch#source(source_name) abort
 	try
 		let func_name = printf('colorswatch#source#%s#collect',
 					\ a:source_name)
@@ -35,7 +35,7 @@ function! colorswatch#source(source_name)
 endfunction
 
 
-function! colorswatch#format(entries, formatter_name)
+function! colorswatch#format(entries, formatter_name) abort
 	try
 		let func_name = printf('colorswatch#formatter#%s#format',
 					\ a:formatter_name)
@@ -49,18 +49,18 @@ function! colorswatch#format(entries, formatter_name)
 endfunction
 
 
-function! s:prepare_buffer()
+function! s:prepare_buffer() abort
 	let needs_new_buffer =
 				\ &modified
 				\ || line('$') != 1
-				\ || getline(1) != ''
+				\ || getline(1) !=? ''
 	if needs_new_buffer
 		new
 	endif
 endfunction
 
 
-function! s:finish_buffer()
+function! s:finish_buffer() abort
 	set nomodified
 	setlocal nocursorline
 	normal! gg

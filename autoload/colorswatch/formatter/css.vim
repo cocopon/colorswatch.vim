@@ -9,7 +9,7 @@ set cpo&vim
 let s:hex_pattern = '^#\x\{6}$'
 
 
-function! colorswatch#formatter#css#format(entries)
+function! colorswatch#formatter#css#format(entries) abort
 	if !has('gui')
 		echoerr 'Not available in this version'
 	endif
@@ -44,8 +44,8 @@ function! colorswatch#formatter#css#format(entries)
 endfunction
 
 
-function! s:convert_color(color)
-	if a:color !~ s:hex_pattern
+function! s:convert_color(color) abort
+	if a:color !~? s:hex_pattern
 		" TODO: Convert named color into hex value
 		return ''
 	endif

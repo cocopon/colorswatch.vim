@@ -12,7 +12,7 @@ let s:methods = [
 			\ ]
 
 
-function! colorswatch#decorator#new()
+function! colorswatch#decorator#new() abort
 	let decorator = {}
 	let decorator.dict_ = {}
 	let decorator.color_id_ = 0
@@ -26,7 +26,7 @@ function! colorswatch#decorator#new()
 endfunction
 
 
-function! colorswatch#decorator#register(color) dict
+function! colorswatch#decorator#register(color) abort dict
 	if strlen(a:color) == 0
 		return -1
 	endif
@@ -54,7 +54,7 @@ function! colorswatch#decorator#register(color) dict
 endfunction
 
 
-function! colorswatch#decorator#get_marker(color) dict
+function! colorswatch#decorator#get_marker(color) abort dict
 	let color_id = get(self.dict_, a:color, -1)
 
 	return color_id < 0
@@ -63,7 +63,7 @@ function! colorswatch#decorator#get_marker(color) dict
 endfunction
 
 
-function! s:group_name(color_id)
+function! s:group_name(color_id) abort
 	return printf('colorSwatch%03d', a:color_id)
 endfunction
 

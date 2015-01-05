@@ -7,7 +7,7 @@ set cpo&vim
 
 
 " A source that collects all cterm colors.
-function! colorswatch#source#cterm#collect()
+function! colorswatch#source#cterm#collect() abort
 	if has('gui_running') || &t_Co < 256
 		echoerr 'Not available in this version'
 	endif

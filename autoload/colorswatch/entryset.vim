@@ -14,7 +14,7 @@ let s:methods = [
 			\ ]
 
 
-function! colorswatch#entryset#new(entries)
+function! colorswatch#entryset#new(entries) abort
 	let entryset = {}
 	let entryset.entries_ = a:entries
 
@@ -34,22 +34,22 @@ function! colorswatch#entryset#new(entries)
 endfunction
 
 
-function! colorswatch#entryset#find_entry(name) dict
+function! colorswatch#entryset#find_entry(name) abort dict
 	return get(self.dict_, a:name)
 endfunction
 
 
-function! colorswatch#entryset#entries() dict
+function! colorswatch#entryset#entries() abort dict
 	return self.entries_
 endfunction
 
 
-function! colorswatch#entryset#all_names() dict
+function! colorswatch#entryset#all_names() abort dict
 	return map(copy(self.entries_), 'v:val.get_name()')
 endfunction
 
 
-function! colorswatch#entryset#get_attrs(name, ...) dict
+function! colorswatch#entryset#get_attrs(name, ...) abort dict
 	let entry = get(self.dict_, a:name, {})
 	if empty(entry)
 		return entry
