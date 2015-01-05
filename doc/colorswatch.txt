@@ -26,8 +26,8 @@ colorscheme, theme for powerline-like plugin, etc.
 
 :ColorSwatchGenerate [source] [formatter]               *:ColorSwatchGenerate*
                         Generates a color swatch of the current buffer. You
-                        can specify the source and the formatter to change
-                        output format. See |colorswatch-source| and
+                        can specify a source and a formatter to change output
+                        format. See |colorswatch-source| and
                         |colorswatch-formatter| for more information.
 
 
@@ -74,7 +74,7 @@ css                                                *colorswatch-formatter-css*
 5. Options                                               *colorswatch-options*
 
                                              *g:colorswatch_exclusion_pattern*
-Exclusion pattern of the group name. Groups that match with the pattern will
+Exclusion pattern of a group name. Groups that match with the pattern will
 not be displayed in output.
 >
         let g:colorswatch_exclusion_pattern = 'LightLine.\+'
