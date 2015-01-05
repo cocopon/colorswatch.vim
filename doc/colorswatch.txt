@@ -34,7 +34,7 @@ colorscheme, theme for powerline-like plugin, etc.
 ==============================================================================
 3. Source                                                 *colorswatch-source*
 
-You can specify a source of the color swatch.
+"Source" is a source of highlight data used to generate a color swatch.
 
 all                                                   *colorswatch-source-all*
                         Default source. Collects all highlight groups.
@@ -51,7 +51,7 @@ cterm                                               *colorswatch-source-cterm*
 ==============================================================================
 4. Formatter                                           *colorswatch-formatter*
 
-You can specify an output format of the color swatch.
+"Formatter" defines an output format of collected highlight data.
 
 default                                        *colorswatch-formatter-default*
                         Default formatter. Generates a user-friendly color
