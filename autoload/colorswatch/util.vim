@@ -6,13 +6,19 @@ let s:save_cpo = &cpo
 set cpo&vim
 
 
+function! s:is_gui_enabled() abort
+	return has('gui')
+				\ || (has('termguicolors') && &termguicolors)
+endfunction
+
+
 function! colorswatch#util#bg_attr_name() abort
-	return has('gui') ? 'guibg' : 'ctermbg'
+	return s:is_gui_enabled() ? 'guibg' : 'ctermbg'
 endfunction
 
 
 function! colorswatch#util#fg_attr_name() abort
-	return has('gui') ? 'guifg' : 'ctermfg'
+	return s:is_gui_enabled() ? 'guifg' : 'ctermfg'
 endfunction
 
 
