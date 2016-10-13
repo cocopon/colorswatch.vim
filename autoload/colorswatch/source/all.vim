@@ -4,8 +4,8 @@ set cpo&vim
 
 " A source that collects all highlight groups.
 function! colorswatch#source#all#collect() abort
-	let entries = colorswatch#reader#read()
-	call sort(entries, 'colorswatch#sorter#by_name')
+	let entries = colorswatch#hi_reader#read()
+	call sort(entries, 'colorswatch#entry_sorter#by_name')
 	return entries
 endfunction
 

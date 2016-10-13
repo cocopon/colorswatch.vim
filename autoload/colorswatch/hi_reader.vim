@@ -6,7 +6,7 @@ let s:save_cpo = &cpo
 set cpo&vim
 
 
-function! colorswatch#reader#read() abort
+function! colorswatch#hi_reader#read() abort
 	redir => data
 	silent highlight
 	redir END
