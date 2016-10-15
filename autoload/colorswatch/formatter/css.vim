@@ -10,10 +10,6 @@ let s:hex_pattern = '^#\x\{6}$'
 
 
 function! colorswatch#formatter#css#format(entries) abort
-	if !has('gui')
-		echoerr 'Not available in this version'
-	endif
-
 	let entryset = colorswatch#entryset#new(a:entries)
 	let lines = []
 	for name in entryset.all_names()
