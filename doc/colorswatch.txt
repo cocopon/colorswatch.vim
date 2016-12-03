@@ -69,6 +69,14 @@ csv                                                *colorswatch-formatter-csv*
 css                                                *colorswatch-formatter-css*
                         Generates highlight data in CSS format.
 
+json                                              *colorswatch-formatter-json*
+                        Generates highlight data in JSON format.
+>
+                            {
+                              "{group-name}": ["{bg}", "{fg}"],
+                              ...
+                            }
+<
 
 ==============================================================================
 5. Options                                               *colorswatch-options*
