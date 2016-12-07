@@ -53,19 +53,20 @@ endfunction
 
 function! s:parse_entry(line) abort
 	" Name xxx key=value key=value ...
+	" Name xxx key=value key=value ... links to AnotherName
 	" Name xxx links to AnotherName
 	" Name xxx cleared
 
 	let comps = split(a:line)
-	let name = comps[0]
 
+	let name = comps[0]
 	let entry = colorswatch#entry#new(name)
 
-	let comps2 = comps[2]
-	if comps2 ==? 'links'
-		let target_name = comps[4]
+	let links_index = index(comps, 'links')
+	if links_index >= 2
+		let target_name = comps[links_index + 2]
 		call entry.set_link(target_name)
-	elseif comps2 ==? 'cleared'
+	elseif comps[2] ==? 'cleared'
 		call entry.set_cleared(1)
 	else
 		let attrs = copy(comps)
