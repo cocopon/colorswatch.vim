@@ -66,7 +66,9 @@ function! colorswatch#entryset#get_attrs(name, ...) abort dict
 	endif
 	call add(history, a:name)
 
-	return self.get_attrs(entry.get_link(), history)
+	let my_attrs = entry.get_attrs()
+	let linked_attrs = self.get_attrs(entry.get_link(), history)
+	return extend(my_attrs, linked_attrs, 'force')
 endfunction
 
 

@@ -62,27 +62,30 @@ function! s:parse_entry(line) abort
 	let name = comps[0]
 	let entry = colorswatch#entry#new(name)
 
+	if comps[2] ==? 'cleared'
+		call entry.set_cleared(1)
+		return entry
+	endif
+
 	let links_index = index(comps, 'links')
 	if links_index >= 2
 		let target_name = comps[links_index + 2]
 		call entry.set_link(target_name)
-	elseif comps[2] ==? 'cleared'
-		call entry.set_cleared(1)
-	else
-		let attrs = copy(comps)
-		call remove(attrs, 0, 1)
-		call entry.set_attrs(s:parse_attrs(attrs))
 	endif
+
+	let attrs = copy(comps)
+	call remove(attrs, 0, 1)
+	call entry.set_attrs(s:parse_attrs(comps))
 
 	return entry
 endfunction
 
 
-function! s:parse_attrs(attrs) abort
+function! s:parse_attrs(comps) abort
 	let result = {}
 
-	for attr in a:attrs
-		let pair = split(attr, '=')
+	for comp in a:comps
+		let pair = split(comp, '=')
 
 		if len(pair) == 2
 			let result[pair[0]] = pair[1]
