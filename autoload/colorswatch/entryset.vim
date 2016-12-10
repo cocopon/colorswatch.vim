@@ -59,6 +59,7 @@ function! colorswatch#entryset#get_attrs(name, ...) abort dict
 		return entry.get_attrs()
 	endif
 
+	" Avoid infinite loop caused by circular reference
 	let history = (a:0 == 1) ? a:1 : []
 	if index(history, a:name) >= 0
 		echoerr 'Circular reference detected'
