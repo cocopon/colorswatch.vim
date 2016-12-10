@@ -18,9 +18,10 @@ function! colorswatch#formatter#csv#format(entries) abort
 
 		call add(row, name)
 
-		let attrs = entryset.get_attrs(name)
-		call add(row, get(attrs, bg_attr_name, ''))
-		call add(row, get(attrs, fg_attr_name, ''))
+		let bg_attr = entryset.get_attr(name, bg_attr_name)
+		call add(row, bg_attr)
+		let fg_attr = entryset.get_attr(name, fg_attr_name)
+		call add(row, fg_attr)
 
 		call add(rows, join(map(row, '"\"" . v:val . "\""'), ','))
 	endfor

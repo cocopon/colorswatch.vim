@@ -16,10 +16,13 @@ function! colorswatch#formatter#default#format(entries) abort
 	for name in entryset.all_names()
 		let row = []
 
-		let attrs = entryset.get_attrs(name)
 		call add(row, colorswatch#cell#text(name))
-		call add(row, colorswatch#cell#color(get(attrs, bg_attr_name, '')))
-		call add(row, colorswatch#cell#color(get(attrs, fg_attr_name, '')))
+
+		let bg_attr = entryset.get_attr(name, bg_attr_name)
+		call add(row, colorswatch#cell#color(bg_attr))
+
+		let fg_attr = entryset.get_attr(name, fg_attr_name)
+		call add(row, colorswatch#cell#color(fg_attr))
 
 		call add(data, row)
 	endfor

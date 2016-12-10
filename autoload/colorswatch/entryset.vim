@@ -11,6 +11,7 @@ let s:methods = [
 			\ 	'entries',
 			\ 	'find_entry',
 			\ 	'get_attrs',
+			\ 	'get_attr',
 			\ ]
 
 
@@ -70,6 +71,13 @@ function! colorswatch#entryset#get_attrs(name, ...) abort dict
 	let my_attrs = entry.get_attrs()
 	let linked_attrs = self.get_attrs(entry.get_link(), history)
 	return extend(my_attrs, linked_attrs, 'force')
+endfunction
+
+
+function! colorswatch#entryset#get_attr(name, attr_name) abort dict
+	let attrs = self.get_attrs(a:name)
+	let attr = get(attrs, a:attr_name, '')
+	return attr
 endfunction
 
 

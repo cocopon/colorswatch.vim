@@ -17,9 +17,11 @@ function! colorswatch#formatter#json#format(entries) abort
 		let entry_json = printf('"%s":', name)
 
 		let entry_json .= '['
-		let attrs = entryset.get_attrs(name)
-		let entry_json .= printf('"%s",', get(attrs, bg_attr_name, ''))
-		let entry_json .= printf('"%s"', get(attrs, fg_attr_name, ''))
+
+		let bg_attr = entryset.get_attr(name, bg_attr_name)
+		let entry_json .= printf('"%s",', bg_attr)
+		let fg_attr = entryset.get_attr(name, fg_attr_name)
+		let entry_json .= printf('"%s"', fg_attr)
 		let entry_json .= ']'
 
 		call add(entry_jsons, entry_json)

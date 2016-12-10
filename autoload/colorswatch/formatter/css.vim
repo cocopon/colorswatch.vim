@@ -10,17 +10,16 @@ function! colorswatch#formatter#css#format(entries) abort
 	let entryset = colorswatch#entryset#new(a:entries)
 	let lines = []
 	for name in entryset.all_names()
-		let attrs = entryset.get_attrs(name)
 		let decls = []
 
-		let bg = get(attrs, 'guibg', '')
-		if !empty(bg)
-			call add(decls, printf('background-color:%s;', bg))
+		let bg_attr = entryset.get_attr(name, 'guibg')
+		if !empty(bg_attr)
+			call add(decls, printf('background-color:%s;', bg_attr))
 		endif
 
-		let fg = get(attrs, 'guifg', '')
-		if !empty(fg)
-			 call add(decls, printf('color:%s;', fg))
+		let fg_attr = entryset.get_attr(name, 'guifg')
+		if !empty(fg_attr)
+			 call add(decls, printf('color:%s;', fg_attr))
 		endif
 
 		if empty(decls)

@@ -16,16 +16,14 @@ function! colorswatch#formatter#minimal#format(entries) abort
 	let entryset = colorswatch#entryset#new(a:entries)
 	let colors = {}
 	for name in entryset.all_names()
-		let attrs = entryset.get_attrs(name)
-
-		let color = get(attrs, bg_attr_name, '')
-		if !empty(color)
-			let colors[color] = 1
+		let bg_attr = entryset.get_attr(name, bg_attr_name)
+		if !empty(bg_attr)
+			let colors[bg_attr] = 1
 		endif
 
-		let color = get(attrs, fg_attr_name, '')
-		if !empty(color)
-			let colors[color] = 1
+		let fg_attr = entryset.get_attr(name, fg_attr_name)
+		if !empty(fg_attr)
+			let colors[fg_attr] = 1
 		endif
 	endfor
 
