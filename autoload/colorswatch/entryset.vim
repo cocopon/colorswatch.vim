@@ -10,9 +10,21 @@ let s:methods = [
 			\ 	'all_names',
 			\ 	'entries',
 			\ 	'find_entry',
-			\ 	'get_attrs',
+			\ 	'get_attrs_',
 			\ 	'get_attr',
 			\ ]
+let s:rev_source_attr_name_dict = {
+			\ 	'ctermbg': 'cterm',
+			\ 	'ctermfg': 'cterm',
+			\ 	'guibg': 'gui',
+			\ 	'guifg': 'gui',
+			\ }
+let s:rev_attr_name_dict = {
+			\ 	'ctermbg': 'ctermfg',
+			\ 	'ctermfg': 'ctermbg',
+			\ 	'guibg': 'guifg',
+			\ 	'guifg': 'guibg',
+			\ }
 
 
 function! colorswatch#entryset#new(entries) abort
@@ -50,7 +62,7 @@ function! colorswatch#entryset#all_names() abort dict
 endfunction
 
 
-function! colorswatch#entryset#get_attrs(name, ...) abort dict
+function! colorswatch#entryset#get_attrs_(name, ...) abort dict
 	let entry = get(self.dict_, a:name, {})
 	if empty(entry)
 		return entry
@@ -69,14 +81,34 @@ function! colorswatch#entryset#get_attrs(name, ...) abort dict
 	call add(history, a:name)
 
 	let my_attrs = entry.get_attrs()
-	let linked_attrs = self.get_attrs(entry.get_link(), history)
+	let linked_attrs = self.get_attrs_(entry.get_link(), history)
 	return extend(my_attrs, linked_attrs, 'force')
 endfunction
 
 
 function! colorswatch#entryset#get_attr(name, attr_name) abort dict
-	let attrs = self.get_attrs(a:name)
+	let attrs = self.get_attrs_(a:name)
 	let attr = get(attrs, a:attr_name, '')
+
+	let rev_source_attr_name = get(s:rev_source_attr_name_dict, a:attr_name)
+	let may_reverse = !empty(rev_source_attr_name)
+	if !may_reverse
+		return attr
+	endif
+
+	let rev_source_attrs = split(
+				\ get(attrs, rev_source_attr_name, ''),
+				\ ',')
+	let should_reverse = index(rev_source_attrs, 'reverse') >= 0
+				\ || index(rev_source_attrs, 'inverse') >= 0
+	if should_reverse
+		let rev_attr_name = get(
+					\ s:rev_attr_name_dict,
+					\ a:attr_name,
+					\ '')
+		return get(attrs, rev_attr_name, '')
+	endif
+
 	return attr
 endfunction
 
