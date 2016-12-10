@@ -6,9 +6,6 @@ let s:save_cpo = &cpo
 set cpo&vim
 
 
-let s:hex_pattern = '^#\x\{6}$'
-
-
 function! colorswatch#formatter#css#format(entries) abort
 	let entryset = colorswatch#entryset#new(a:entries)
 	let lines = []
@@ -16,12 +13,12 @@ function! colorswatch#formatter#css#format(entries) abort
 		let attrs = entryset.get_attrs(name)
 		let decls = []
 
-		let bg = s:convert_color(get(attrs, 'guibg', ''))
+		let bg = get(attrs, 'guibg', '')
 		if !empty(bg)
 			call add(decls, printf('background-color:%s;', bg))
 		endif
 
-		let fg = s:convert_color(get(attrs, 'guifg', ''))
+		let fg = get(attrs, 'guifg', '')
 		if !empty(fg)
 			 call add(decls, printf('color:%s;', fg))
 		endif
@@ -37,16 +34,6 @@ function! colorswatch#formatter#css#format(entries) abort
 	endfor
 
 	return lines
-endfunction
-
-
-function! s:convert_color(color) abort
-	if a:color !~? s:hex_pattern
-		" TODO: Convert named color into hex value
-		return ''
-	endif
-
-	return a:color
 endfunction
 
 
