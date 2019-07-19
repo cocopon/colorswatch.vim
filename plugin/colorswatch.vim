@@ -1,7 +1,3 @@
-" Author:  cocopon <cocopon@me.com>
-" License: MIT License
-
-
 if exists('g:loaded_colorswatch')
 	finish
 endif
