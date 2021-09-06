@@ -17,6 +17,21 @@ function! colorswatch#generate(...) abort
 endfunction
 
 
+function! colorswatch#generate_complete(arglead, cmdline, cursorpos) abort
+	let args = split(substitute(a:cmdline[: a:cursorpos - len(a:arglead) - 1],
+				\ '\C^.\{-}C\%[olorSwatchGenerate]!\?', '', ''))
+	let n = len(args)
+	if n == 0
+		let candidates = ['all', 'original', 'cterm']
+	elseif n == 1
+		let candidates = ['default', 'minimal', 'csv', 'css', 'json']
+	else
+		let candidates = []
+	endif
+	return join(candidates, "\n")
+endfunction
+
+
 function! colorswatch#source(source_name) abort
 	try
 		let func_name = printf('colorswatch#source#%s#collect',
